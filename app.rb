@@ -4,7 +4,6 @@ Dotenv.load
 require 'sinatra/base'
 require 'sinatra/activerecord'
 
-require 'thin'
 require 'has_secure_token'
 require 'bcrypt'
 require 'yaml'
@@ -22,8 +21,4 @@ class App < Sinatra::Base
   register Sinatra::ActiveRecordExtension
 
   require "./lib/cookie"
-
-  EventMachine.run do
-    Thin::Server.start App, '0.0.0.0', 5000
-  end
 end
