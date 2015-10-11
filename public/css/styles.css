@@ -1,0 +1,15 @@
+#tools_bottom,
+#rulers,
+#tool_fhpath,
+#tool_line,
+#tools_rect_show,
+#tool_text,
+#tool_image,
+#tool_zoom,
+#history_panel,
+#tool_wireframe,
+#sidepanel_handle,
+#layerpanel
+{
+  display: none !important;
+}

@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/css/jgraduate.css" type="text/css"/>
   <link rel="stylesheet" href="/css/svg-editor.css" type="text/css"/>
   <link rel="stylesheet" href="/css/JQuerySpinBtn.css" type="text/css"/>
+  <link rel="stylesheet" href="/css/styles.css" type="text/css"/>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
@@ -493,60 +494,10 @@
               <div id="stroke_bg"></div>
               <div id="stroke_color" class="color_block" title="Change stroke color"></div>
             </div>
-
-            <label class="stroke_label">
-              <input id="stroke_width" title="Change stroke width by 1, shift-click to change by 0.1" size="2" value="5" type="text" data-attr="Stroke Width"/>
-            </label>
-
-            <div id="toggle_stroke_tools" title="Show/hide more stroke tools"></div>
-
-            <label class="stroke_tool">
-              <select id="stroke_style" title="Change stroke dash style">
-                <option selected="selected" value="none">&#8212;</option>
-                <option value="2,2">...</option>
-                <option value="5,5">- -</option>
-                <option value="5,2,2,2">- .</option>
-                <option value="5,2,2,2,2,2">- ..</option>
-              </select>
-            </label>
-
-            <div class="stroke_tool dropdown" id="stroke_linejoin">
-              <div id="cur_linejoin" title="Linejoin: Miter"></div>
-              <button></button>
-            </div>
-
-            <div class="stroke_tool dropdown" id="stroke_linecap">
-              <div id="cur_linecap" title="Linecap: Butt"></div>
-              <button></button>
-            </div>
-
-          </div>
-
-          <div class="color_tool" id="tool_opacity" title="Change selected item opacity">
-            <label>
-              <span id="group_opacityLabel" class="icon_label"></span>
-              <input id="group_opacity" size="3" value="100" type="text"/>
-            </label>
-            <div id="opacity_dropdown" class="dropdown">
-              <button></button>
-              <ul>
-                <li>0%</li>
-                <li>25%</li>
-                <li>50%</li>
-                <li>75%</li>
-                <li>100%</li>
-                <li class="special"><div id="opac_slider"></div></li>
-              </ul>
-            </div>
           </div>
         </div>
 
       </div>
-
-      <div id="tools_bottom_3">
-        <div id="palette_holder"><div id="palette" title="Click to change fill color, shift-click to change stroke color"></div></div>
-      </div>
-      <!-- <div id="copyright"><span id="copyrightLabel">Powered by</span> <a href="http://svg-edit.googlecode.com/" target="_blank">SVG-edit v2.6-beta</a></div> -->
     </div>
 
     <div id="option_lists" class="dropdown">
@@ -641,101 +592,6 @@
 
     </div>
   </div>
-
-  <div id="svg_prefs">
-    <div class="overlay"></div>
-    <div id="svg_prefs_container">
-      <div id="tool_prefs_back" class="toolbar_button">
-        <button id="tool_prefs_save">OK</button>
-        <button id="tool_prefs_cancel">Cancel</button>
-      </div>
-
-      <fieldset>
-        <legend id="svginfo_editor_prefs">Editor Preferences</legend>
-
-        <label><span id="svginfo_lang">Language:</span>
-          <!-- Source: http://en.wikipedia.org/wiki/Language_names -->
-          <select id="lang_select">
-            <option id="lang_ar" value="ar">العربية</option>
-            <option id="lang_cs" value="cs">Čeština</option>
-            <option id="lang_de" value="de">Deutsch</option>
-            <option id="lang_en" value="en" selected="selected">English</option>
-            <option id="lang_es" value="es">Español</option>
-            <option id="lang_fa" value="fa">فارسی</option>
-            <option id="lang_fr" value="fr">Français</option>
-            <option id="lang_fy" value="fy">Frysk</option>
-            <option id="lang_hi" value="hi">&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;, &#2361;&#2367;&#2306;&#2342;&#2368;</option>
-            <option id="lang_it" value="it">Italiano</option>
-            <option id="lang_ja" value="ja">日本語</option>
-            <option id="lang_nl" value="nl">Nederlands</option>
-            <option id="lang_pl" value="pl">Polski</option>
-            <option id="lang_pt-BR" value="pt-BR">Português (BR)</option>
-            <option id="lang_ro" value="ro">Română</option>
-            <option id="lang_ru" value="ru">Русский</option>
-            <option id="lang_sk" value="sk">Slovenčina</option>
-            <option id="lang_zh-TW" value="zh-TW">繁體中文</option>
-          </select>
-        </label>
-
-        <label><span id="svginfo_icons">Icon size:</span>
-          <select id="iconsize">
-            <option id="icon_small" value="s">Small</option>
-            <option id="icon_medium" value="m" selected="selected">Medium</option>
-            <option id="icon_large" value="l">Large</option>
-            <option id="icon_xlarge" value="xl">Extra Large</option>
-          </select>
-        </label>
-
-        <fieldset id="change_background">
-          <legend id="svginfo_change_background">Editor Background</legend>
-          <div id="bg_blocks"></div>
-          <label><span id="svginfo_bg_url">URL:</span> <input type="text" id="canvas_bg_url"/></label>
-          <p id="svginfo_bg_note">Note: Background will not be saved with image.</p>
-        </fieldset>
-
-        <fieldset id="change_grid">
-          <legend id="svginfo_grid_settings">Grid</legend>
-          <label><span id="svginfo_snap_onoff">Snapping on/off</span><input type="checkbox" value="snapping_on" id="grid_snapping_on"/></label>
-          <label><span id="svginfo_snap_step">Snapping Step-Size:</span> <input type="text" id="grid_snapping_step" size="3" value="10"/></label>
-          <label><span id="svginfo_grid_color">Grid color:</span> <input type="text" id="grid_color" size="3" value="#000"/></label>
-        </fieldset>
-
-        <fieldset id="units_rulers">
-          <legend id="svginfo_units_rulers">Units &amp; Rulers</legend>
-          <label><span id="svginfo_rulers_onoff">Show rulers</span><input type="checkbox" value="show_rulers" id="show_rulers" checked="checked"/></label>
-          <label>
-            <span id="svginfo_unit">Base Unit:</span>
-            <select id="base_unit">
-              <option value="px">Pixels</option>
-              <option value="cm">Centimeters</option>
-              <option value="mm">Millimeters</option>
-              <option value="in">Inches</option>
-              <option value="pt">Points</option>
-              <option value="pc">Picas</option>
-              <option value="em">Ems</option>
-              <option value="ex">Exs</option>
-            </select>
-          </label>
-          <!-- Should this be an export option instead? -->
-<!--
-        <span id="svginfo_unit_system">Unit System:</span>
-        <label>
-          <input type="radio" name="unit_system" value="single" checked="checked"/>
-          <span id="svginfo_single_type_unit">Single type unit</span>
-          <small id="svginfo_single_type_unit_sub">CSS unit type is set on root element. If a different unit type is entered in a text field, it is converted back to user units on export.</small>
-        </label>
-        <label>
-          <input type="radio" name="unit_system" value="multi"/>
-          <span id="svginfo_multi_units">Multiple CSS units</span>
-          <small id="svginfo_single_type_unit_sub">Attributes can be given different CSS units, which may lead to inconsistant results among viewers.</small>
-        </label>
-      -->
-    </fieldset>
-
-  </fieldset>
-
-</div>
-</div>
 
 <div id="dialog_box">
   <div class="overlay"></div>
