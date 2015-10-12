@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include BCrypt
-  validates_presence_of :username, :password
+  validates_presence_of :email, :password
 
   def create
     @user = User.new(params[:user])

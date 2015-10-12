@@ -6,6 +6,7 @@ require './models/user'
 class App < Sinatra::Base
   configure do
     enable :logging
+    enable :sessions
   end
   set :environment, ENV['RACK_ENV']
   set :public_folder, Proc.new { File.join(root, "public") }

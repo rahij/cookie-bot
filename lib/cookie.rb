@@ -1,21 +1,5 @@
 class App
   helpers do
-
-    # optional param `id` checks if the authorized user is the same as the user
-    # whose details are being fetched
-    def authorized_user(id = nil)
-      @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-      if @auth.provided? && @auth.basic? && @auth.credentials
-        user = check_token_and_get_user(
-          id: @auth.credentials[0],
-          auth_token: @auth.credentials[1]
-        )
-        id.nil? ? user : (user && user.id === id ? user : nil)
-      else
-        nil
-      end
-    end
-
     def check_password_and_get_user(params)
       user = User.where(
         email: params[:email],
@@ -26,11 +10,6 @@ class App
         nil
       end
     end
-
-    def respond_as_unauthorized
-      # headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
-      halt 401, "Not authorized\n"
-    end
   end
 
   get '/' do
@@ -39,6 +18,24 @@ class App
 
   get '/app' do
     erb :app
+  end
+
+  get '/login' do
+    erb :login
+  end
+
+  post '/login' do
+    user = check_password_and_get_user(params)
+    if user.nil?
+      redirect to('/login?error=1')
+    else
+      session['id'] = user.id
+      redirect to('/app')
+    end
+  end
+
+  get '/init' do
+    User.first_or_create(email: 'rahij.ramsharan@gmail.com', password: 'test')
   end
 
   post '/upload' do
