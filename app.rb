@@ -1,12 +1,4 @@
-require 'dotenv'
 Dotenv.load
-
-require 'sinatra/base'
-require 'sinatra/activerecord'
-
-require 'has_secure_token'
-require 'bcrypt'
-require 'yaml'
 
 # Can be used in ./cookie.rb like User.find, User.all etc
 require './models/user'
