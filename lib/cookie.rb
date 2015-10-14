@@ -24,6 +24,12 @@ class App
     unless authorized?
       redirect to('/login')
     end
+    if params[:id]
+      template = Template.find(params[:id])
+    else
+      template = nil
+    end
+    erb :app, locals: { template: template }
   end
 
   get '/editor' do

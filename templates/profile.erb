@@ -1,7 +1,9 @@
 <div class="container">
   <% user.templates.each do |t| %>
     <div class="user-template">
-      <img src="<%= t.svg_encoded_str %>" />
+      <a href="/app?id=<%= t.id %>">
+        <img src="<%= t.svg_encoded_str %>" />
+      </a>
     </div>
   <% end %>
 </div>

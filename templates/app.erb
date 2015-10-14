@@ -1,3 +1,7 @@
 <div class="container">
-  <iframe src="/editor" width="800" height="500"></iframe>
+  <% if template.nil? %>
+    <iframe src="/editor" width="800" height="500"></iframe>
+  <% else %>
+    <iframe src="/editor?source=<%= template.svg_encoded_str.gsub("charset=UTF-8;", "") %>" width="800" height="500"></iframe>
+  <% end %>
 </div>
