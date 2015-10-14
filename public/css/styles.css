@@ -42,3 +42,7 @@ body {
   color: black;
   font-size: 14px;
 }
+
+.user-template img {
+  border: 1px solid #000;
+}

@@ -41,9 +41,9 @@ svgEditor.addExtension("server_opensave", {
 			save: function(win, data) {
 				var svg = '<?xml version="1.0" encoding="UTF-8"?>\n' + data, // Firefox doesn't seem to know it is UTF-8 (no matter whether we use or skip the clientDownload code) despite the Content-Disposition header containing UTF-8, but adding the encoding works
 				filename = getFileNameFromTitle();
-        // var imgData = 'data:image/svg+xml;charset=UTF-8;base64,' + svgedit.utilities.encode64(svg);
-        $.post("/upload", { svgSource: svg }, function(data) {
-          console.log(data);
+        var imgData = 'data:image/svg+xml;charset=UTF-8;base64,' + svgedit.utilities.encode64(svg);
+        $.post("/upload", { svg_source: svg, svg_encoded_str: imgData  }, function(data) {
+          alert("Saved");
         });
 				// if (clientDownloadSupport(filename, '.svg', 'data:image/svg+xml;charset=UTF-8;base64,' + svgedit.utilities.encode64(svg))) {
 				// 	return;

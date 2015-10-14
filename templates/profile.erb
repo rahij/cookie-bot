@@ -1,0 +1,7 @@
+<div class="container">
+  <% user.templates.each do |t| %>
+    <div class="user-template">
+      <img src="<%= t.svg_encoded_str %>" />
+    </div>
+  <% end %>
+</div>

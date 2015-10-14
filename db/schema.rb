@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012163456) do
+ActiveRecord::Schema.define(version: 20151014160122) do
+
+  create_table "templates", force: :cascade do |t|
+    t.integer "user_id"
+    t.text    "svg_source"
+    t.text    "svg_encoded_str"
+    t.string  "stl_key"
+    t.string  "amf_key"
+    t.boolean "is_public"
+  end
+
+  add_index "templates", ["user_id"], name: "index_templates_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string "email"

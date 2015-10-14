@@ -12,16 +12,7 @@ class App
     end
 
     def authorized?
-      p session
       !session[:id].nil?
-    end
-
-    def protected!(erb_key)
-      if authorized?
-        erb erb_key
-      else
-        redirect to('/login')
-      end
     end
   end
 
@@ -30,12 +21,41 @@ class App
   end
 
   get '/app' do
-    # protected!(:app)
-    erb :app
+    unless authorized?
+      redirect to('/login')
+    end
   end
 
   get '/editor' do
     erb :editor, layout: false
+  end
+
+  get '/init' do
+    User.first_or_create(email: 'rahij.ramsharan@gmail.com', password: 'test')
+  end
+
+  get '/profile' do
+    if authorized?
+      erb :profile, locals: { user: User.includes(:templates).find(session[:id]) }
+    else
+      redirect to('/login')
+    end
+  end
+
+  get '/gallery' do
+    erb :gallery, locals: { templates: Template.all }
+  end
+
+  post '/upload' do
+    unless authorized?
+      halt 401
+    end
+    template = Template.new(params)
+    print template.svg_source + "\n"
+    template.normalize_svg!
+    user = User.find(session[:id])
+    user.templates << template
+    user.save!
   end
 
   get '/login' do
@@ -61,20 +81,5 @@ class App
     session.clear
     p session
     redirect to('/login')
-  end
-
-  get '/init' do
-    User.first_or_create(email: 'rahij.ramsharan@gmail.com', password: 'test')
-  end
-
-  post '/upload' do
-    xml_doc  = Nokogiri::XML(params[:svgSource])
-    print xml_doc
-    svg_path = xml_doc.xpath('//svg:path', 'svg' => 'http://www.w3.org/2000/svg')
-    d_value = svg_path.attr('d').value
-    d_value.sub!("m", "m ")
-    d_value.gsub!(/(.*)(z)(.*)/, '\1 z\3')
-    svg_path.attr('d', d_value)
-    print xml_doc.to_xml
   end
 end

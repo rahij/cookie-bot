@@ -2,6 +2,7 @@ Dotenv.load
 
 # Can be used in ./cookie.rb like User.find, User.all etc
 require './models/user'
+require './models/template'
 
 class App < Sinatra::Base
   configure do
