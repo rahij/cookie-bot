@@ -1,14 +1,44 @@
-#tools_bottom,
-#tool_fhpath,
-#tool_line,
-#tools_rect_show,
-#tool_text,
-#tool_image,
-#tool_zoom,
-#history_panel,
-#tool_wireframe,
-#sidepanel_handle,
-#layerpanel
-{
-  display: none !important;
+body {
+  background-color: #eff3fa;
+  font-family: "Open Sans", sans-serif;
+
+  /* to compensate for fixed top*/
+  padding-top: 70px;
+}
+
+.navbar {
+  background-color: #337AB7;
+  height: 25px;
+}
+
+.navbar .navbar-brand {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  color: white;
+  padding-left: 30px;
+  padding-top: 12px;
+}
+
+.navbar .navbar-brand:hover {
+  color: white;
+}
+
+.navbar .navbar-right {
+  margin-right: 20px;
+}
+
+.navbar .navbar-nav li a {
+  color: white;
+  font-size: 16px;
+  font-weight: 100;
+}
+
+.navbar .navbar-nav li a:hover {
+  color: #CCCCCC;
+}
+
+.navbar .navbar-nav .dropdown-menu li a {
+  color: black;
+  font-size: 14px;
 }

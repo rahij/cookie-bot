@@ -30,7 +30,12 @@ class App
   end
 
   get '/app' do
-    protected!(:app)
+    # protected!(:app)
+    erb :app
+  end
+
+  get '/editor' do
+    erb :editor, layout: false
   end
 
   get '/login' do
@@ -47,6 +52,7 @@ class App
       redirect to('/login?error=1')
     else
       session[:id] = user.id
+      session[:email] = user.email
       redirect to('/app')
     end
   end
