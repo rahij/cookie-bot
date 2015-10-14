@@ -4,11 +4,11 @@ This is built on Sinatra
 
  - Clone the repo
  - Install `bundler`, `ruby-2.2.2`, `sqlite3`
- - `bundle install`
  - Copy `config/database.yml.example` into `config/database.yml`
  - Copy `.env.example` into `.env`
+ - `bundle install`
  - `rake db:migrate`
- - `rackup ruby app.rb`
+ - `rerun 'rackup ruby app.rb'`
  - Navigate to `localhost:5000`
 
 ####Development Specific:
