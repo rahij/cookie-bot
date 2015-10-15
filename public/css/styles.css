@@ -46,3 +46,13 @@ body {
 .user-template img {
   border: 1px solid #000;
 }
+
+.app-wrapper {
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.editor {
+  margin-top: 15px;
+}

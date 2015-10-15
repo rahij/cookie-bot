@@ -6,7 +6,7 @@ class CreateTemplates < ActiveRecord::Migration
       t.text :svg_encoded_str
       t.string :stl_key
       t.string :amf_key
-      t.boolean :is_public
+      t.boolean :is_public, default: true
     end
   end
 end

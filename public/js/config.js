@@ -2,7 +2,6 @@
 
 svgEditor.setConfig({
 extensions: [
-  'ext-server_opensave.js',
 	// 'ext-eyedropper.js',
 	// 'ext-shapes.js',
 	// 'ext-polygon.js',

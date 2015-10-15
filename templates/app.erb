@@ -1,7 +1,95 @@
-<div class="container">
-  <% if template.nil? %>
-    <iframe src="/editor" width="800" height="500"></iframe>
-  <% else %>
-    <iframe src="/editor?source=<%= template.svg_encoded_str.gsub("charset=UTF-8;", "") %>" width="800" height="500"></iframe>
-  <% end %>
-</div>
+<script src="/js/embedapi.js"></script>
+  <script>
+    /*globals $, EmbeddedSVGEdit*/
+    var initEmbed;
+    $(function () {'use strict';
+      var svgCanvas = null;
+
+      initEmbed = function () {
+          var doc, mainButton,
+              frame = document.getElementById('svgedit');
+          svgCanvas = new EmbeddedSVGEdit(frame);
+          // Hide main button, as we will be controlling new, load, save, etc. from the host document
+          doc = frame.contentDocument || frame.contentWindow.document;
+          mainButton = doc.getElementById('main_button');
+          mainButton.style.display = 'none';
+
+          <% if !template.nil? %>
+            loadSvg('<%= template.svg_source.split("\n").map(&:strip)[0...-1].join("") %>');
+          <% end %>
+      };
+
+      function handleSvgData(data, error) {
+        if (error) {
+            alert('error ' + error);
+        } else {
+          var svg_source = '<?xml version="1.0" encoding="UTF-8"?>\n' + data;
+          var svg_encoded_str = 'data:image/svg+xml;charset=UTF-8;base64,' +encode64(svg_source);
+          $.post("/upload", { svg_source: svg_source, svg_encoded_str: svg_encoded_str  }, function(data) {
+            var template = JSON.parse(data);
+            window.location.href = "/prefs/" + template['id'];
+          });
+        }
+      }
+
+      function loadSvg(svgexample) {
+        svgCanvas.setSvgString(svgexample);
+      }
+
+      function saveSvg() {
+        svgCanvas.getSvgString()(handleSvgData);
+      }
+
+      function encode64(input) {
+        // base64 strings are 4/3 larger than the original string
+        if(window.btoa) return window.btoa(input);
+        var _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+        var output = new Array( Math.floor( (input.length + 2) / 3 ) * 4 );
+        var chr1, chr2, chr3;
+        var enc1, enc2, enc3, enc4;
+        var i = 0, p = 0;
+
+        do {
+          chr1 = input.charCodeAt(i++);
+          chr2 = input.charCodeAt(i++);
+          chr3 = input.charCodeAt(i++);
+
+          enc1 = chr1 >> 2;
+          enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+          enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+          enc4 = chr3 & 63;
+
+          if (isNaN(chr2)) {
+            enc3 = enc4 = 64;
+          } else if (isNaN(chr3)) {
+            enc4 = 64;
+          }
+
+          output[p++] = _keyStr.charAt(enc1);
+          output[p++] = _keyStr.charAt(enc2);
+          output[p++] = _keyStr.charAt(enc3);
+          output[p++] = _keyStr.charAt(enc4);
+        } while (i < input.length);
+
+        return output.join('');
+      }
+
+      $('#save-btn').click(saveSvg);
+      $('.editor').append(
+        $('<iframe src="/editor?extensions=ext-xdomain-messaging.js' +
+        window.location.href.replace(/\?(.*)$/, '&$1') +
+        '" width="800px" height="600px" id="svgedit" onload="initEmbed();"></iframe>'
+        )
+      );
+    });
+  </script>
+  <div class="container">
+    <div class="app-wrapper">
+      <div>
+        <button id="save-btn" class="btn btn-block btn-primary">
+          Next
+        </button>
+      </div>
+      <div class="editor"></div>
+    </div>
+  </div>

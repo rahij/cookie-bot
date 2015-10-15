@@ -49,10 +49,11 @@ class App
   end
 
   get '/gallery' do
-    erb :gallery, locals: { templates: Template.all }
+    erb :gallery, locals: { templates: Template.where(is_public: true) }
   end
 
   post '/upload' do
+    p session
     unless authorized?
       halt 401
     end
@@ -62,6 +63,27 @@ class App
     user = User.find(session[:id])
     user.templates << template
     user.save!
+    template.to_json
+  end
+
+  get '/prefs/:id' do
+    unless authorized?
+      redirect to('/login')
+    end
+    template = Template.find(params[:id])
+    erb :prefs, locals: { template: template }
+  end
+
+  post '/prefs/:id' do
+    unless authorized?
+      redirect to('/login')
+    end
+    template = Template.find(params[:id])
+    template[:size] = params[:size]
+    template[:material] = params[:material]
+    template[:is_public] = true if params[:is_public]
+    template.save!
+    redirect to('/profile')
   end
 
   get '/login' do

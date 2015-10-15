@@ -1,0 +1,34 @@
+<div class="container row">
+  <div class="col-md-4">
+    <form action="" method="POST">
+      <div class="form-group">
+        <label for="size">Size</label>
+        <select class="form-control" name="size" id="size">
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="material">Material</label>
+        <select class="form-control" name="material" id="material">
+          <option value="plastic">Plastic</option>
+          <option value="metal">Metal</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input name="is_public" type="checkbox" value="public">
+          Public?
+        </label>
+      </div>
+      <input type="submit" class="btn btn-primary btn-block" value= "Create" />
+    </form>
+  </div>
+
+  <div class="col-md-8">
+    <img src="<%= template[:svg_encoded_str] %>" />
+  </div>
+</div>
