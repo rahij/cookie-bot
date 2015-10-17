@@ -8,7 +8,7 @@ This is built on Sinatra
  - Copy `.env.example` into `.env`
  - `bundle install`
  - `rake db:migrate`
- - `rerun 'rackup ruby app.rb'`
+ - `rerun 'rackup -p 5000'`
  - Navigate to `localhost:5000`
 
 ####Development Specific:
