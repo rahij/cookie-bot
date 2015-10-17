@@ -1,9 +1,12 @@
+html, body, #wrapper {
+  height: 100%;
+}
 body {
   background-color: #eff3fa;
   font-family: "Open Sans", sans-serif;
 
   /* to compensate for fixed top*/
-  padding-top: 70px;
+  padding-top: 0px;
 }
 
 .navbar {
@@ -56,3 +59,77 @@ body {
 .editor {
   margin-top: 15px;
 }
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    left: 0px;
+    height: 100%;
+    margin-left: 0px;
+    overflow-y: auto;
+    background: #1D212A;
+    padding-right: 0px;
+
+}
+
+#top-bar-wrapper {
+  height: 60px;
+  background: #2D7CB5;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.sidebar-nav li {
+    text-indent: 0px;
+    line-height: 40px;
+}
+
+.sidebar-nav li img {
+    width: 130px;
+    height: 130px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 20px;
+}
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #fff ;
+    text-align: center;
+    font-family: 'Open Sans';
+}
+
+.sidebar-nav li:hover {
+    text-decoration: none;
+    color: #fff;
+    background: #2D7CB5;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 90px;
+    font-size: 48px;
+    line-height: 60px;
+    font-family: 'Amatic SC';
+    color: #2D7CB5;
+    text-align: center;
+    vertical-align: top;
+    padding-bottom: 90px
+}
+
+
+.sidebar-nav > .sidebar-brand p:hover {
+    color: #2D7CB5;
+    background: #1D212A;
+}
+
