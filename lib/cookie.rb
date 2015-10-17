@@ -60,6 +60,7 @@ class App
     template = Template.new(params)
     print template.svg_source + "\n"
     template.normalize_svg!
+    template.stl_key = '/input_extruded.stl'
     user = User.find(session[:id])
     user.templates << template
     user.save!
