@@ -15,6 +15,7 @@ class App < Sinatra::Base
   set :public_folder, Proc.new { File.join(root, "public") }
   set :views, Proc.new { File.join(root, "templates") }
   register Sinatra::ActiveRecordExtension
+  register Sinatra::Flash
 
   require "./lib/cookie"
 end

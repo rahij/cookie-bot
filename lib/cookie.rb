@@ -86,6 +86,25 @@ class App
     redirect to('/profile')
   end
 
+  get '/signup' do
+    if authorized?
+      redirect to('/app')
+    end
+    erb :signup
+  end
+
+  post '/signup' do
+    user = User.create(params)
+    if user.errors.messages.empty?
+      session[:id] = user.id
+      session[:email] = user.email
+      redirect to('/app')
+    else
+      flash[:errors] = user.errors.messages
+      redirect to('/signup')
+    end
+  end
+
   get '/login' do
     if authorized?
       redirect to('/app')

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include BCrypt
   validates_presence_of :email, :password
+  validates_uniqueness_of :email
   has_many :templates
 
   def create
