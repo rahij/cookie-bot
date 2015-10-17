@@ -1,15 +1,9 @@
 <div class="container row">
   <div class="col-md-4">
+    <div class="size-disp">
+      <h5>Size: <%= template[:size] %></h5>
+    </div>
     <form action="" method="POST">
-      <div class="form-group">
-        <label for="size">Size</label>
-        <select class="form-control" name="size" id="size">
-          <option value="small">Small</option>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
-        </select>
-      </div>
-
       <div class="form-group">
         <label for="material">Material</label>
         <select class="form-control" name="material" id="material">

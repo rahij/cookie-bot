@@ -66,20 +66,37 @@ class App
     template.to_json
   end
 
-  get '/prefs/:id' do
+  get '/size/:id' do
     unless authorized?
       redirect to('/login')
     end
     template = Template.find(params[:id])
-    erb :prefs, locals: { template: template }
+    erb :size, locals: { template: template }
   end
 
-  post '/prefs/:id' do
+  post '/size/:id' do
     unless authorized?
       redirect to('/login')
     end
     template = Template.find(params[:id])
     template[:size] = params[:size]
+    template.save!
+    redirect to("/material/#{params[:id]}")
+  end
+
+  get '/material/:id' do
+    unless authorized?
+      redirect to('/login')
+    end
+    template = Template.find(params[:id])
+    erb :material, locals: { template: template }
+  end
+
+  post '/material/:id' do
+    unless authorized?
+      redirect to('/login')
+    end
+    template = Template.find(params[:id])
     template[:material] = params[:material]
     template[:is_public] = true if params[:is_public]
     template.save!

@@ -27,7 +27,7 @@
           var svg_encoded_str = 'data:image/svg+xml;charset=UTF-8;base64,' +encode64(svg_source);
           $.post("/upload", { svg_source: svg_source, svg_encoded_str: svg_encoded_str  }, function(data) {
             var template = JSON.parse(data);
-            window.location.href = "/prefs/" + template['id'];
+            window.location.href = "/size/" + template['id'];
           });
         }
       }
