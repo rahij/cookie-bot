@@ -49,7 +49,7 @@ class App
   end
 
   get '/gallery' do
-    erb :gallery, locals: { templates: Template.where(is_public: true) }
+    erb :gallery, locals: { templates: Template.where(is_public: true).order(id: :desc) }
   end
 
   post '/upload' do
@@ -60,10 +60,13 @@ class App
     template = Template.new(params)
     print template.svg_source + "\n"
     template.normalize_svg!
-    template.stl_key = '/input_extruded.stl'
     user = User.find(session[:id])
     user.templates << template
     user.save!
+    File.open("./public/generated/#{template.id}.svg", "w") {|f| f.write(template.svg_source)}
+    `./public/generated/pipeline.sh #{template.id}`
+    template.stl_key = "/generated/#{template.id}_extruded.stl"
+    template.save!
     template.to_json
   end
 
