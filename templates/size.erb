@@ -1,6 +1,101 @@
-<div class="container row">
-  <div class="col-md-4">
-    <form action="" method="POST">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.js"></script>
+<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/STLLoader.js"></script>
+<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/TrackballControls.js" type="text/javascript"></script>
+<script src="/js/embedapi.js"></script>
+
+<script>
+var container, camera, scene, renderer, controls;
+
+    function initViewer(stlPath) {
+      container = $(".viewer")[0]
+      var width = container.clientWidth;
+      var height = container.clientHeight;
+
+      scene = new THREE.Scene();
+
+      camera = new THREE.PerspectiveCamera(
+
+              75,                                     // field of view in degrees?
+              width/height,                         // canvas based aspect ratio; use when canvas is smaller than page
+              0.1  ,                                   // distance to nearest side of rendered space
+              10000                                   // distance to farthest side of rendered space
+             );
+
+      camera.position.set(100, 100, 600);
+      camera.lookAt(scene.position);
+
+
+      controls = new THREE.TrackballControls(camera , container);
+      controls.addEventListener('change', render);
+
+      // object
+
+      var loader = new THREE.STLLoader();
+
+      loader.load('/input_extruded.stl', function(geometry) {
+        // var geometry = event.content;
+
+        var material = new THREE.MeshLambertMaterial({color: 0xe9b762});
+
+        var mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+      });
+
+      // lights
+
+      scene.add(new THREE.AmbientLight(0xFFFF00));
+      var light = new THREE.PointLight(0xFFFF00);
+      light.position.set(100, 0, 100);
+      scene.add(light);
+
+      // var directionalLight = new THREE.DirectionalLight(0xffffff, 9);
+      // directionalLight.position = camera.position;
+      // scene.add(directionalLight);
+
+      // renderer
+
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(width , height);
+      container.appendChild(renderer.domElement);
+
+      // window.addEventListener('resize', onWindowResize, function);
+    }
+
+    function addLight(x, y, z, color, intensity) {
+
+      var directionalLight = new THREE.DirectionalLight(color, intensity);
+      directionalLight.position.set(x, y, z)
+      scene.add(directionalLight);
+
+    }
+
+    function onWindowResize() {
+
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+
+      renderer.setSize(width, height);
+    }
+
+    function animateViewer() {
+      requestAnimationFrame(animateViewer);
+      controls.update();
+      render();
+
+    }
+
+    function render() {
+
+     camera.lookAt(scene.position);
+     renderer.render(scene, camera);
+
+   }
+  });
+</script>
+
+
+ <div class="col-md-8">
+    <!-- <form action="" method="POST">
       <div class="form-group">
         <label for="size">Size</label>
         <select class="form-control" name="size" id="size">
@@ -10,10 +105,71 @@
         </select>
       </div>
       <input type="submit" class="btn btn-primary btn-block" value= "Next" />
-    </form>
+    </form> -->
+    <div class="size-wrapper row">
+      <div class="col-md-4">
+        <div class="row>">
+          <div class="circle1 col-md-12">
+            <div class="circle-text text-custom1">
+              2"
+            </div>
+          </div>
+        </div>
+        <div class="row>">
+          <div class="circle4 col-md-12">
+            <div class="circle-text text-custom4">
+              8"
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="row>">
+          <div class="circle2 col-md-12">
+            <div class="circle-text text-custom2">
+              4"
+            </div>
+          </div>
+        </div>
+        <div class="row>">
+          <div class="circle5 col-md-12">
+            <div class="circle-text text-custom5">
+              10"
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="row>">
+          <div class="circle3 col-md-12">
+            <div class="circle-text text-custom3">
+              6"
+            </div>
+          </div>
+        </div>
+        <div class="row>">
+          <div class="circle6 col-md-12">
+            <div class="circle-text text-custom6">
+              12"
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="col-md-8">
-    <img src="<%= template[:svg_encoded_str] %>" />
+
+  <div class="col-md-4">
+    <!-- <img src="<%= template[:svg_encoded_str] %>" /> -->
+    <h3>Your Cookie:</h3>
+      <div class="viewer" style="width:350px;height:350px;"></div>
+      <div>
+        <button id="next-btn" class="btn btn-default btn-lg">
+          Next
+        </button>
+      </div>
   </div>
-</div>
+
+
