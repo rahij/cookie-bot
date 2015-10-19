@@ -48,8 +48,12 @@ class App
     end
   end
 
+  get '/shapes' do
+      erb :shapes
+  end
+
   get '/gallery' do
-    erb :gallery, locals: { templates: Template.where(is_public: true).order(id: :desc) }
+    erb :gallery, locals: { templates: Template.where(is_public: false).order(id: :desc) }
   end
 
   post '/upload' do

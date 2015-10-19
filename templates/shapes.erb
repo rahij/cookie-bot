@@ -6,27 +6,21 @@
 <script src="/js/stl_viewer.js" type="text/javascript"></script>
 
 <script>
-$(function () {'use strict';
-  initViewer("<%= template[:stl_key] %>");
-  animateViewer();
+// $(function () {'use strict';
+//   initViewer("<%= template[:stl_key] %>");
+//   animateViewer();
 
   $("#size").click(function(e) {
     var size = $(e).data('size')
     $("#size-selector").val(size);
   });
-
-  $(".cookie_image").click(function(e) {
-    $(".cookie_image").removeClass("flavor_img_clicked");
-    $(this).addClass("flavor_img_clicked");
-  });
-
 });
 </script>
 
 <!-- insert viewer code here -->
 
   <div class="col-md-8">
-  <!--   <form action="" method="POST">
+    <form action="" method="POST" style:"display:none;">
       <div class="form-group">
         <label for="material">Material</label>
         <select class="form-control" name="material" id="material">
@@ -34,21 +28,13 @@ $(function () {'use strict';
           <option value="metal">Metal</option>
         </select>
       </div>
-
-      <div class="form-group">
-        <label>
-          <input name="is_public" type="checkbox" value="public">
-          Public?
-        </label>
-      </div>
-      <input type="submit" class="btn btn-primary btn-block" value= "Create" />
-    </form> -->
+    </form>
 
     <div class="size-wrapper row">
       <div class="col-md-4">
         <div class="row>">
           <div class="flavor col-md-12">
-            <img class = "cookie_image" src="/images/chocolate.png">
+            <img src="/images/chocolate.png">
             <div class="flavor-text">
               Chocolate
             </div>
@@ -56,7 +42,7 @@ $(function () {'use strict';
         </div>
         <div class="row>">
           <div class="flavor col-md-12">
-            <img class = "cookie_image" src="/images/blueberry.png">
+            <img src="/images/blueberry.png">
             <div class="flavor-text">
               Blueberry
             </div>
@@ -67,7 +53,7 @@ $(function () {'use strict';
       <div class="col-md-4">
         <div class="row>">
           <div class="flavor col-md-12">
-            <img class = "cookie_image" src="/images/peanut_butter.png">
+            <img src="/images/peanut_butter.png">
             <div class="flavor-text">
               Peanut Butter
             </div>
@@ -75,7 +61,7 @@ $(function () {'use strict';
         </div>
         <div class="row>">
           <div class="flavor col-md-12">
-            <img class = "cookie_image" src="/images/double_chocolate_chip.png">
+            <img src="/images/double_chocolate_chip.png">
             <div class="flavor-text">
               Chocolate Chip
             </div>
@@ -86,7 +72,7 @@ $(function () {'use strict';
       <div class="col-md-4">
         <div class="row>">
           <div class="flavor col-md-12">
-            <img class = "cookie_image" src="/images/matcha_tea.png">
+            <img src="/images/matcha_tea.png">
             <div class="flavor-text">
               Matcha Tea
             </div>
@@ -94,7 +80,7 @@ $(function () {'use strict';
         </div>
         <div class="row>">
           <div class="flavor col-md-12">
-            <img class = "cookie_image" src="/images/very_berry.png">
+            <img src="/images/very_berry.png">
             <div class="flavor-text">
               Very Berry
             </div>
@@ -107,11 +93,10 @@ $(function () {'use strict';
 
   <div class="col-md-4">
     <!-- <img src="<%= template[:svg_encoded_str] %>" /> -->
-    <h3 id="your_cookie">Your Cookie:</h3>
-      <div class="viewer" style="width:364px;height:480px;"></div>
-      <div class="row">&nbsp;</div>
+    <h3>Your Cookie:</h3>
+      <div class="viewer" style="width:364px;height:350px;"></div>
       <div>
-        <button id="next-btn" class="btn btn-default btn-lg btn-block">
+        <button id="next-btn" class="btn btn-default btn-lg">
           Next
         </button>
       </div>

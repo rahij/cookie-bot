@@ -9,37 +9,55 @@ $(function () {'use strict';
   initViewer("<%= template[:stl_key] %>");
   animateViewer();
 
-  $("#size").click(function(e) {
-    var size = $(e).data('size')
+  $(".size").click(function(e) {
+    $(".size").removeClass("circle_clicked");
+    $(this).addClass("circle_clicked");
+    var size = $(this).data('size');
     $("#size-selector").val(size);
   });
 });
+
+   $('#next-btn').click(submit);
+   $('#next-btn').click(function(e) {
+      window.location.href = "/material/" + $(e.currentTarget).data('templateid');
+    });
+
+// function submit() {
+//   var data = $('cookie_size_form').serialize();
+//   console.log(data);
+//   $.post()
+
+// }
 </script>
 
 
  <div class="col-md-8">
-    <!-- <form action="" method="POST" style="display: none">
+    <form action="" method="POST" id="cookie_size_form" style="display:none;">
       <div class="form-group">
-        <label for="size">Size</label>
-        <select class="form-control" name="size" id="size-selector">
-          <option value="2">Small</option>
-          <option value="4">Medium</option>
-          <option value="8">Large</option>
+        <!-- <label for="size">Size</label> -->
+        <select class="form-control"  id="size-selector">
+          <option value="2"></option>
+          <option value="4"></option>
+          <option value="6"></option>
+          <option value="8"></option>
+          <option value="10"></option>
+          <option value="12"></option>
         </select>
       </div>
       <input type="submit" class="btn btn-primary btn-block" value= "Next" />
-    </form> -->
+    </form>
+
     <div class="size-wrapper row">
       <div class="col-md-4">
         <div class="row>">
-          <div class="circle1 col-md-12">
-            <div class="circle-text text-custom1">
+          <div class="size circle4 col-md-12" data-size="2">
+            <div class="circle-text text-custom4">
               2"
             </div>
           </div>
         </div>
         <div class="row>">
-          <div class="circle4 col-md-12" data-size="8">
+          <div class="size circle4 col-md-12" data-size="8">
             <div class="circle-text text-custom4">
               8"
             </div>
@@ -49,14 +67,14 @@ $(function () {'use strict';
 
       <div class="col-md-4">
         <div class="row>">
-          <div class="circle2 col-md-12">
-            <div class="circle-text text-custom2">
+          <div class="size circle4 col-md-12" data-size="4">
+            <div class="circle-text text-custom4">
               4"
             </div>
           </div>
         </div>
         <div class="row>">
-          <div class="circle5 col-md-12">
+          <div class="size circle4 col-md-12" data-size="10">
             <div class="circle-text text-custom5">
               10"
             </div>
@@ -66,15 +84,15 @@ $(function () {'use strict';
 
       <div class="col-md-4">
         <div class="row>">
-          <div class="circle3 col-md-12">
-            <div class="circle-text text-custom3">
+          <div class="size circle4 col-md-12" data-size="6">
+            <div class="circle-text text-custom4">
               6"
             </div>
           </div>
         </div>
         <div class="row>">
-          <div class="circle6 col-md-12">
-            <div class="circle-text text-custom6">
+          <div class="size circle4 col-md-12" data-size="12">
+            <div class="circle-text text-custom5">
               12"
             </div>
           </div>
@@ -86,10 +104,11 @@ $(function () {'use strict';
 
   <div class="col-md-4">
     <!-- <img src="<%= template[:svg_encoded_str] %>" /> -->
-    <h3>Your Cookie:</h3>
-      <div class="viewer" style="width:350px;height:350px;"></div>
+    <h3 id="your_cookie">Your Cookie:</h3>
+      <div class="viewer" style="width:364px;height:480px;"></div>
+      <div class="row">&nbsp;</div>
       <div>
-        <button id="next-btn" class="btn btn-default btn-lg">
+        <button id="next-btn" type="submit" class="btn btn-default btn-lg btn-block">
           Next
         </button>
       </div>

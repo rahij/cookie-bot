@@ -54,7 +54,10 @@
         </div>
         <div id="page-content-wrapper" class="col-md-10">
           <div id="top-bar-wrapper" class="row">
-            <ul class="nav navbar-nav navbar-right">
+            <ul id="heading_navbar" class="nav navbar-nav navbar-left">
+              <li>Test Heading</li>
+            </ul>
+            <ul id="user_navbar" class="nav navbar-nav navbar-right">
                 <% if session[:id] %>
                   <li><a href="/profile"><%= session[:email] %></a></li>
                 <% else %>

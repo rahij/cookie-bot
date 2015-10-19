@@ -46,6 +46,7 @@
 
     function saveSvg() {
       svgCanvas.getSvgString()(handleSvgData);
+      $("#next-btn").prop("disabled", false);
     }
 
     function encode64(input) {
@@ -89,7 +90,7 @@
     $('.editor').append(
       $('<iframe src="/editor?extensions=ext-xdomain-messaging.js' +
       window.location.href.replace(/\?(.*)$/, '&$1') +
-      '" width="800px" height="500px" id="svgedit" onload="initEmbed();"></iframe>'
+      '" width="800px" height="550px" id="svgedit" onload="initEmbed();"></iframe>'
       )
     );
   });
@@ -100,24 +101,31 @@
   <div class="left-wrapper col-md-8">
       <ul class="nav nav-pills">
         <li class="active"><a href="#">Draw a shape</a></li>
-        <li><a href="#">Preset Shapes</a></li>
+        <li><a href="/shapes">Preset Shapes</a></li>
         <li><a href="/gallery">Pick a Gallery Shape</a></li>
         <li><a href="/profile">Re-use your old shape</a></li>
       </ul>
      <div class="editor"></div>
-      <div>
-        <button id="save-btn" class="btn btn-default btn-lg">
-          Save
-        </button>
-      </div>
   </div>
   <div class="right-wrapper col-md-4">
-      <h3>Your Cookie:</h3>
-      <div class="viewer" style="width:350px;height:350px;"></div>
-      <div>
-        <button id="next-btn" class="btn btn-default btn-lg">
-          Next
-        </button>
+      <h3 id="your_cookie">Your Cookie:</h3>
+      <div class="viewer" style="width:364px;height:480px;"></div>
+      <div class="row">&nbsp;</div>
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <button id="save-btn" class="btn btn-default btn-lg btn-block">
+              Save
+            </button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <button id="next-btn" class="btn btn-success btn-lg btn-block" disabled>
+              Next
+            </button>
+          </div>
+        </div>
       </div>
   </div>
 
