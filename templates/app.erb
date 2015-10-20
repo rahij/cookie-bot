@@ -21,7 +21,7 @@
         mainButton.style.display = 'none';
 
         <% if !template.nil? %>
-          loadSvg('<%= template.svg_source.split("\n").map(&:strip)[0...-1].join("") %>');
+          loadSvg('<%= template.svg_source.split("\n").map(&:strip).drop(1).join("") %>');
         <% end %>
     };
 
