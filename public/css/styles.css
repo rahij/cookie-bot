@@ -69,7 +69,8 @@ body {
 }
 
 #page-content-wrapper {
-  float: right;
+  float: left;
+  margin-left: 240px;
 }
 
 #sidebar-wrapper {
