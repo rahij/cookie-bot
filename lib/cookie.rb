@@ -29,7 +29,7 @@ class App
     else
       template = nil
     end
-    erb :app, locals: { template: template }
+    erb :app, locals: { template: template, heading:  "Cookie Design" }
   end
 
   get '/editor' do
@@ -42,18 +42,20 @@ class App
 
   get '/profile' do
     if authorized?
-      erb :profile, locals: { user: User.includes(:templates).find(session[:id]) }
+      flash[:heading] = "Profile"
+      erb :profile, locals: { user: User.includes(:templates).find(session[:id]), heading: "Profile" }
     else
       redirect to('/login')
     end
   end
 
   get '/shapes' do
-      erb :shapes
+      erb :shapes, locals: { heading: "Pick a Shape" }
   end
 
   get '/gallery' do
-    erb :gallery, locals: { templates: Template.where(is_public: false).order(id: :desc) }
+    flash[:heading] = "Gallery"
+    erb :gallery, locals: { templates: Template.where(is_public: false).order(id: :desc), heading: "Gallery" }
   end
 
   post '/upload' do
@@ -79,7 +81,8 @@ class App
       redirect to('/login')
     end
     template = Template.find(params[:id])
-    erb :size, locals: { template: template }
+    flash[:heading] = "Pick a Size"
+    erb :size, locals: { template: template, heading: "Pick a Size" }
   end
 
   post '/size/:id' do
@@ -97,7 +100,7 @@ class App
       redirect to('/login')
     end
     template = Template.find(params[:id])
-    erb :material, locals: { template: template }
+    erb :material, locals: { template: template, heading: "Pick a Flavor" }
   end
 
   post '/material/:id' do
@@ -115,7 +118,7 @@ class App
     if authorized?
       redirect to('/app')
     end
-    erb :signup
+    erb :signup, locals: { heading: "Sign Up" }
   end
 
   post '/signup' do
@@ -134,7 +137,7 @@ class App
     if authorized?
       redirect to('/app')
     else
-      erb :login
+      erb :login, locals: { heading: "Sign In"}
     end
   end
 

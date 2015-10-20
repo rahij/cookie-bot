@@ -46,6 +46,13 @@ body {
   font-size: 14px;
 }
 
+#heading_navbar {
+  padding-left: 30px;
+  font-size: 36px;
+  color: #fff;
+  padding-top: 4px;
+}
+
 .user-template img {
   border: 1px solid #000;
 }
@@ -270,6 +277,31 @@ body {
 }
 
 .flavor_img_clicked{
+  width: 230px;
+  font-weight: bold;
+}
+
+.shapes {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: "Open Sans";
+  text-align: center;
+  color: #2D7CB5;
+  font-size: 24px;
+}
+
+.shapes_image{
+  width: 220px;
+}
+
+.shapes_image:hover,
+.shapes_image:visited,
+.shapes_image:active{
+  width: 230px;
+  font-weight: bold;
+}
+
+.shapes_img_clicked{
   width: 230px;
   font-weight: bold;
 }

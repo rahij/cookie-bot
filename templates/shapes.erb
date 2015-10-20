@@ -14,6 +14,11 @@
     var size = $(e).data('size')
     $("#size-selector").val(size);
   });
+
+    $(".shapes_image").click(function(e) {
+    $(".shapes_image").removeClass("shapes_img_clicked");
+    $(this).addClass("shapes_img_clicked");
+  });
 });
 </script>
 
@@ -33,57 +38,39 @@
     <div class="size-wrapper row">
       <div class="col-md-4">
         <div class="row>">
-          <div class="flavor col-md-12">
-            <img src="/images/chocolate.png">
-            <div class="flavor-text">
-              Chocolate
-            </div>
+          <div class="shapes col-md-12">
+            <img class= "shapes_image" src="/images/shape_square.png">
           </div>
         </div>
         <div class="row>">
-          <div class="flavor col-md-12">
-            <img src="/images/blueberry.png">
-            <div class="flavor-text">
-              Blueberry
-            </div>
+          <div class="shapes col-md-12">
+            <img class= "shapes_image" src="/images/shape_triangle.png">
           </div>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="row>">
-          <div class="flavor col-md-12">
-            <img src="/images/peanut_butter.png">
-            <div class="flavor-text">
-              Peanut Butter
-            </div>
+          <div class="shapes col-md-12">
+            <img class= "shapes_image" src="/images/shape_star.png">
           </div>
         </div>
         <div class="row>">
-          <div class="flavor col-md-12">
-            <img src="/images/double_chocolate_chip.png">
-            <div class="flavor-text">
-              Chocolate Chip
-            </div>
+          <div class="shapes col-md-12">
+            <img class= "shapes_image" src="/images/shape_ellipse.png">
           </div>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="row>">
-          <div class="flavor col-md-12">
-            <img src="/images/matcha_tea.png">
-            <div class="flavor-text">
-              Matcha Tea
-            </div>
+          <div class="shapes col-md-12">
+            <img class= "shapes_image" src="/images/shape_rectangle.png">
           </div>
         </div>
         <div class="row>">
-          <div class="flavor col-md-12">
-            <img src="/images/very_berry.png">
-            <div class="flavor-text">
-              Very Berry
-            </div>
+          <div class="shapes col-md-12">
+            <img class= "shapes_image" src="/images/shape_diamond.png">
           </div>
         </div>
       </div>
@@ -94,10 +81,10 @@
   <div class="col-md-4">
     <!-- <img src="<%= template[:svg_encoded_str] %>" /> -->
     <h3>Your Cookie:</h3>
-      <div class="viewer" style="width:364px;height:350px;"></div>
+      <div class="viewer" style="width:364px;height:480px;"></div>
       <div>
         <button id="next-btn" class="btn btn-default btn-lg">
-          Next
+          Use Shape
         </button>
       </div>
   </div>
