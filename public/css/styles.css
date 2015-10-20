@@ -178,7 +178,7 @@ body {
   padding-left: 0px !important;
 }
 
-#your_cookie {
+#your-cookie {
   margin-top: 12px;
   margin-bottom: 17px;
 }
@@ -381,4 +381,8 @@ body {
 .viewer {
   width:364px;
   height:480px;
+}
+
+#is-public-wrapper {
+  margin-left: 18px;
 }

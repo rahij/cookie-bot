@@ -55,7 +55,7 @@ class App
 
   get '/gallery' do
     flash[:heading] = "Gallery"
-    erb :gallery, locals: { templates: Template.where(is_public: false).order(id: :desc), heading: "Gallery" }
+    erb :gallery, locals: { templates: Template.where(is_public: true).order(id: :desc), heading: "Gallery" }
   end
 
   post '/upload' do
