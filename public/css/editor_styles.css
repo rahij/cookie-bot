@@ -1,0 +1,5 @@
+#tools_bottom, #tools_top, #tool_text, #tool_image, #tool_zoom
+#tool_fhpath, #tool_line, #tools_rect_show, #tools_ellipse_show,
+#sidepanels {
+  display: none;
+}
