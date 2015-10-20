@@ -22,19 +22,6 @@ function initViewer(stlPath) {
   controls = new THREE.TrackballControls(camera , container);
   controls.addEventListener('change', render);
 
-  // object
-
-  var loader = new THREE.STLLoader();
-
-  loader.load(stlPath, function(geometry) {
-    // var geometry = event.content;
-
-    var material = new THREE.MeshLambertMaterial({color: 0xe9b762});
-
-    var mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
-  });
-
   // lights
 
   scene.add(new THREE.AmbientLight(0xFFFF00));
@@ -71,7 +58,17 @@ function onWindowResize() {
   renderer.setSize(width, height);
 }
 
-function animateViewer() {
+function animateViewer(stlPath) {
+  var loader = new THREE.STLLoader();
+
+  loader.load(stlPath, function(geometry) {
+    // var geometry = event.content;
+
+    var material = new THREE.MeshLambertMaterial({color: 0xe9b762});
+
+    var mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+  });
   requestAnimationFrame(animateViewer);
   controls.update();
   render();

@@ -8,6 +8,7 @@
   /*globals $, EmbeddedSVGEdit*/
   var initEmbed;
   $(function () {'use strict';
+    initViewer();
 
     var svgCanvas = null;
 
@@ -33,8 +34,7 @@
         var svg_encoded_str = 'data:image/svg+xml;charset=UTF-8;base64,' +encode64(svg_source);
         $.post("/upload", { svg_source: svg_source, svg_encoded_str: svg_encoded_str  }, function(data) {
           var template = JSON.parse(data);
-          initViewer(template['stl_key']);
-          animateViewer();
+          animateViewer(template['stl_key']);
           $("#next-btn").data("templateid", template['id']);
         });
       }
