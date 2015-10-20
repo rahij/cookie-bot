@@ -15,7 +15,7 @@ function initViewer(stlPath) {
           10000                                   // distance to farthest side of rendered space
          );
 
-  camera.position.set(300, 300, 800);
+  camera.position.set(400, 300, 500);
   camera.lookAt(scene.position);
 
 

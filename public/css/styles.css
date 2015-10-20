@@ -282,8 +282,9 @@ body {
   font-weight: bold;
 }
 
+
 .shapes {
-  padding-top: 20px;
+  padding-top: 38px;
   padding-bottom: 20px;
   font-family: "Open Sans";
   text-align: center;
@@ -325,6 +326,16 @@ body {
           box-sizing: border-box;
 }
 
+#next-btn {
+  background-color: #2D7CB5;
+  border-color: #2D7CB5;
+
+}
+
+#save-btn {
+  background-color: #449D44;
+  border-color: #449D44;
+}
 
 .card.hovercard {
   position: relative;
@@ -386,4 +397,6 @@ body {
 
 #is-public-wrapper {
   margin-left: 18px;
+  margin-bottom: 3px;
+  font-size: 20px;
 }

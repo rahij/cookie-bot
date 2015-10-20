@@ -6,8 +6,8 @@
 
 <script>
 $(function () {'use strict';
-  initViewer("<%= template[:stl_key] %>");
-  animateViewer();
+  initViewer();
+  animateViewer("<%= template[:stl_key] %>");
 
   $(".size").click(function(e) {
     $(".size").removeClass("circle_clicked");

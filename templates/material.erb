@@ -7,8 +7,8 @@
 
 <script>
 $(function () {'use strict';
-  initViewer("<%= template[:stl_key] %>");
-  animateViewer();
+  initViewer();
+  animateViewer("<%= template[:stl_key] %>");
 
   $(".flavor").click(function(e) {
     var material = $(this).data('material')
@@ -108,14 +108,14 @@ $(function () {'use strict';
             <div class="form-group" id="is-public-wrapper">
               <label>
                 <input name="is_public" type="checkbox" value="public">
-                Make Public?
+                Allow others to use your design?
               </label>
             </div>
           </form>
       </div>
       <div>
         <button id="next-btn" class="btn btn-default btn-lg btn-block">
-          Next
+          Create Your Cookie!
         </button>
       </div>
   </div>
