@@ -10,14 +10,19 @@ $(function () {'use strict';
   initViewer("<%= template[:stl_key] %>");
   animateViewer();
 
-  $("#size").click(function(e) {
-    var size = $(e).data('size')
-    $("#size-selector").val(size);
+  $(".flavor").click(function(e) {
+    var material = $(this).data('material')
+    console.log(material);
+    $("#material-selector").val(material);
   });
 
-  $(".cookie_image").click(function(e) {
-    $(".cookie_image").removeClass("flavor_img_clicked");
+  $(".cookie-image").click(function(e) {
+    $(".cookie-image").removeClass("flavor_img_clicked");
     $(this).addClass("flavor_img_clicked");
+  });
+
+  $("#next-btn").click(function() {
+    $("#material-form").submit();
   });
 
 });
@@ -26,37 +31,41 @@ $(function () {'use strict';
 <!-- insert viewer code here -->
 
   <div class="col-md-8">
-  <!--   <form action="" method="POST">
+    <form action="" method="POST" id="material-form" style="display: none">
       <div class="form-group">
         <label for="material">Material</label>
-        <select class="form-control" name="material" id="material">
-          <option value="plastic">Plastic</option>
-          <option value="metal">Metal</option>
+        <select class="form-control" name="material" id="material-selector">
+          <option value="chocolate">chocolate</option>
+          <option value="blueberry">blueberry</option>
+          <option value="peanut_butter">peanut_butter</option>
+          <option value="double_chocolate_chip">double_chocolate_chip</option>
+          <option value="matcha_tea">matcha_tea</option>
+          <option value="very_berry">very_berry</option>
         </select>
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label>
           <input name="is_public" type="checkbox" value="public">
           Public?
         </label>
-      </div>
+      </div> -->
       <input type="submit" class="btn btn-primary btn-block" value= "Create" />
-    </form> -->
+    </form>
 
     <div class="size-wrapper row">
       <div class="col-md-4">
         <div class="row>">
-          <div class="flavor col-md-12">
-            <img class = "cookie_image" src="/images/chocolate.png">
+          <div class="flavor col-md-12" data-material="chocolate">
+            <img class = "cookie-image" src="/images/chocolate.png">
             <div class="flavor-text">
               Chocolate
             </div>
           </div>
         </div>
         <div class="row>">
-          <div class="flavor col-md-12">
-            <img class = "cookie_image" src="/images/blueberry.png">
+          <div class="flavor col-md-12" data-material="blueberry">
+            <img class = "cookie-image" src="/images/blueberry.png">
             <div class="flavor-text">
               Blueberry
             </div>
@@ -66,16 +75,16 @@ $(function () {'use strict';
 
       <div class="col-md-4">
         <div class="row>">
-          <div class="flavor col-md-12">
-            <img class = "cookie_image" src="/images/peanut_butter.png">
+          <div class="flavor col-md-12" data-material="peanut_butter">
+            <img class = "cookie-image" src="/images/peanut_butter.png">
             <div class="flavor-text">
               Peanut Butter
             </div>
           </div>
         </div>
         <div class="row>">
-          <div class="flavor col-md-12">
-            <img class = "cookie_image" src="/images/double_chocolate_chip.png">
+          <div class="flavor col-md-12" data-material="double_chocolate_chip">
+            <img class = "cookie-image" src="/images/double_chocolate_chip.png">
             <div class="flavor-text">
               Chocolate Chip
             </div>
@@ -85,16 +94,16 @@ $(function () {'use strict';
 
       <div class="col-md-4">
         <div class="row>">
-          <div class="flavor col-md-12">
-            <img class = "cookie_image" src="/images/matcha_tea.png">
+          <div class="flavor col-md-12" data-material="matcha_tea">
+            <img class = "cookie-image" src="/images/matcha_tea.png">
             <div class="flavor-text">
               Matcha Tea
             </div>
           </div>
         </div>
         <div class="row>">
-          <div class="flavor col-md-12">
-            <img class = "cookie_image" src="/images/very_berry.png">
+          <div class="flavor col-md-12" data-material="very_berry">
+            <img class = "cookie-image" src="/images/very_berry.png">
             <div class="flavor-text">
               Very Berry
             </div>
@@ -108,8 +117,8 @@ $(function () {'use strict';
   <div class="col-md-4">
     <!-- <img src="<%= template[:svg_encoded_str] %>" /> -->
     <h3 id="your_cookie">Your Cookie:</h3>
-      <div class="viewer" style="width:364px;height:480px;"></div>
-      <div class="row">&nbsp;</div>
+      <div class="viewer"></div>
+      <div class="row"></div>
       <div>
         <button id="next-btn" class="btn btn-default btn-lg btn-block">
           Next

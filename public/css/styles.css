@@ -265,13 +265,13 @@ body {
   font-size: 24px;
 }
 
-.cookie_image{
+.cookie-image{
   width: 220px;
 }
 
-.cookie_image:hover,
-.cookie_image:visited,
-.cookie_image:active{
+.cookie-image:hover,
+.cookie-image:visited,
+.cookie-image:active{
   width: 230px;
   font-weight: bold;
 }
@@ -376,4 +376,9 @@ body {
   font-weight: bold;
   padding-left: 30px;
   padding-right: 32px;
+}
+
+.viewer {
+  width:364px;
+  height:480px;
 }
