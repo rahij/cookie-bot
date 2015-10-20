@@ -1,4 +1,4 @@
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.js"></script>
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/STLLoader.js"></script>
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/TrackballControls.js" type="text/javascript"></script>
 <script src="/js/embedapi.js"></script>
@@ -6,10 +6,6 @@
 <script src="/js/stl_viewer.js" type="text/javascript"></script>
 
 <script>
-// $(function () {'use strict';
-//   initViewer("<%= template[:stl_key] %>");
-//   animateViewer();
-
   $("#size").click(function(e) {
     var size = $(e).data('size')
     $("#size-selector").val(size);
@@ -21,71 +17,31 @@
   });
 });
 </script>
-
-<!-- insert viewer code here -->
-
-  <div class="col-md-8">
-    <form action="" method="POST" style:"display:none;">
-      <div class="form-group">
-        <label for="material">Material</label>
-        <select class="form-control" name="material" id="material">
-          <option value="plastic">Plastic</option>
-          <option value="metal">Metal</option>
-        </select>
-      </div>
-    </form>
-
-    <div class="size-wrapper row">
-      <div class="col-md-4">
+<div class="col-md-12">
+  <div class="size-wrapper row">
+    <% shapes = {
+        shape_square: 1,
+        shape_triangle: 2,
+        shape_star: 3,
+        shape_ellipse: 4,
+        shape_rectangle: 5,
+        shape_diamond: 6
+      }
+      shapes.each_with_index do |(shape, template_id), idx|
+    %>
+      <% if idx%2 == 0  %>
+        <div class="col-md-4">
+      <% end %>
         <div class="row>">
           <div class="shapes col-md-12">
-            <img class= "shapes_image" src="/images/shape_square.png">
+            <a href="/app?id=<%= template_id %>">
+              <img class= "shapes_image" src="/images/<%= shape %>.png">
+            </a>
           </div>
         </div>
-        <div class="row>">
-          <div class="shapes col-md-12">
-            <img class= "shapes_image" src="/images/shape_triangle.png">
-          </div>
+      <% if idx%2 != 0  %>
         </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="row>">
-          <div class="shapes col-md-12">
-            <img class= "shapes_image" src="/images/shape_star.png">
-          </div>
-        </div>
-        <div class="row>">
-          <div class="shapes col-md-12">
-            <img class= "shapes_image" src="/images/shape_ellipse.png">
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="row>">
-          <div class="shapes col-md-12">
-            <img class= "shapes_image" src="/images/shape_rectangle.png">
-          </div>
-        </div>
-        <div class="row>">
-          <div class="shapes col-md-12">
-            <img class= "shapes_image" src="/images/shape_diamond.png">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="col-md-4">
-    <!-- <img src="<%= template[:svg_encoded_str] %>" /> -->
-    <h3>Your Cookie:</h3>
-      <div class="viewer"></div>
-      <div>
-        <button id="next-btn" class="btn btn-default btn-lg">
-          Use Shape
-        </button>
-      </div>
+      <% end %>
+    <% end %>
   </div>
 </div>

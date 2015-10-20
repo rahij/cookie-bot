@@ -50,7 +50,10 @@ class App
   end
 
   get '/shapes' do
-      erb :shapes, locals: { heading: "Pick a Shape" }
+    unless authorized?
+      redirect to('/login')
+    end
+    erb :shapes, locals: { heading: "Pick a Shape" }
   end
 
   get '/gallery' do
@@ -59,7 +62,6 @@ class App
   end
 
   post '/upload' do
-    p session
     unless authorized?
       halt 401
     end
